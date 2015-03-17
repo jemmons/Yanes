@@ -2,7 +2,7 @@ import Foundation
 
 public extension NSError{
   public enum YanesCodes:Int{
-    case InvalidContainerObject = 1, InvalidJSONValue
+    case InvalidContainerObject = 1, InvalidJSONValue, InvalidJSONKey
   }
   
   public static var yanesDomain:String{ return "com.mcmxcix.yanes" }
@@ -11,5 +11,8 @@ public extension NSError{
   }
   static func YanesInvalidJSONValueError()->NSError{
     return NSError(domain: yanesDomain, code:YanesCodes.InvalidJSONValue.rawValue, userInfo:[NSLocalizedDescriptionKey:"JSON values must be strings, numbers, arrays, or dictionaries."])
+  }
+  static func YanesInvalidJSONKeyError()->NSError{
+    return NSError(domain: yanesDomain, code:YanesCodes.InvalidJSONKey.rawValue, userInfo:[NSLocalizedDescriptionKey:"JSON keys must be strings."])
   }
 }

@@ -94,15 +94,22 @@ private extension JSONCollection{
     for element in array{
       switch element{
       case let string as String:
-        jsonArray.append(.StringValue(string))
+        jsonArray.append(JSONValue(string))
       case let number as NSNumber:
-        jsonArray.append(.NumberValue(number))
+        jsonArray.append(JSONValue(number))
       case let array as NSArray:
         switch jsonCollectionFromArray(array){
         case .Error(let error):
           return .Error(error)
         case .Value(let boxed):
-          jsonArray.append(JSONValue.CollectionValue(boxed.unbox))
+          jsonArray.append(JSONValue(boxed.unbox))
+        }
+      case let dictionary as NSDictionary:
+        switch jsonCollectionFromDictionary(dictionary){
+        case .Error(let error):
+          return .Error(error)
+        case .Value(let boxed):
+          jsonArray.append(JSONValue(boxed.unbox))        
         }
       default:
         return .Error(NSError.YanesInvalidJSONValueError())
@@ -113,7 +120,37 @@ private extension JSONCollection{
 
   
   static func jsonCollectionFromDictionary(dictionary:NSDictionary)->Result<JSONCollection>{
-    return Result(.ObjectValue(JSONObject()))
+    var jsonObject = JSONObject()
+    for (anyKey, anyValue) in dictionary{
+      
+      if let key = anyKey as? String{
+        switch anyValue{
+        case let string as String:
+          jsonObject[key] = JSONValue(string)
+        case let number as NSNumber:
+          jsonObject[key] = JSONValue(number)
+        case let array as NSArray:
+          switch jsonCollectionFromArray(array){
+          case .Error(let error):
+            return .Error(error)
+          case .Value(let boxed):
+            jsonObject[key] = JSONValue(boxed.unbox)
+          }
+        case let dictionary as NSDictionary:
+          switch jsonCollectionFromDictionary(dictionary){
+          case .Error(let error):
+            return .Error(error)
+          case .Value(let boxed):
+            jsonObject[key] = JSONValue(boxed.unbox)
+          }
+        default:
+          return .Error(NSError.YanesInvalidJSONValueError())
+        }
+      } else{
+        return .Error(NSError.YanesInvalidJSONKeyError())
+      }
+    }
+    return Result(.ObjectValue(jsonObject))
   }
 }
 

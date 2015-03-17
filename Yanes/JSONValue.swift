@@ -4,21 +4,36 @@ public enum JSONValue{
   case StringValue(String)
   case NumberValue(NSNumber)
   case CollectionValue(JSONCollection)
-
-  
-  func more()->JSONCollection?{
-    switch self{
-    case .CollectionValue(let collection):
-      return collection
-    default:
-      return nil
-    }
-  }
 }
 
 
 
 public extension JSONValue{
+  init(_ value:String){
+    self = .StringValue(value)
+  }
+  
+  
+  init(_ value:NSNumber){
+    self = .NumberValue(value)
+  }
+  
+  
+  init(_ value:JSONCollection){
+    self = .CollectionValue(value)
+  }
+  
+  
+  init(_ value:JSONObject){
+    self = .CollectionValue(JSONCollection.ObjectValue(value))
+  }
+  
+  
+  init(_ value:JSONArray){
+    self = .CollectionValue(JSONCollection.ArrayValue(value))
+  }
+  
+  
   var stringValue:String?{
     switch self{
     case .StringValue(let string):
@@ -59,10 +74,8 @@ public extension JSONValue{
       return container.description
     }
   }
-  
-  
-  
 }
+
 
 
 extension JSONValue : StringLiteralConvertible{
@@ -73,10 +86,27 @@ extension JSONValue : StringLiteralConvertible{
   public init(extendedGraphemeClusterLiteral value: String){
     self = .StringValue(value)
   }
-
   
   public init(unicodeScalarLiteral value: String){
     self = .StringValue(value)
   }
 }
 
+
+
+extension JSONValue : IntegerLiteralConvertible{
+  public init(integerLiteral value: IntegerLiteralType) {
+    self = .NumberValue(value)
+  }
+}
+
+
+
+extension JSONValue : FloatLiteralConvertible{
+  public init(floatLiteral value: FloatLiteralType) {
+    self = .NumberValue(value)
+  }
+}
+
+
+//Don't forget about DictionaryLiteralConvertible and ArrayLiteralConvertible
