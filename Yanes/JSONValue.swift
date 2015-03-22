@@ -1,4 +1,5 @@
 import Foundation
+import Result
 
 public enum JSONValue{
   case StringValue(String)
@@ -9,6 +10,36 @@ public enum JSONValue{
 
 
 public extension JSONValue{
+  var stringValue:String?{
+    switch self{
+    case .StringValue(let string):
+      return string
+    default:
+      return nil
+    }
+  }
+  
+  
+  var numberValue:NSNumber?{
+    switch self{
+    case .NumberValue(let number):
+      return number
+    default:
+      return nil
+    }
+  }
+  
+  
+  var collectionValue:JSONCollection?{
+    switch self{
+    case .CollectionValue(let collection):
+      return collection
+    default:
+      return nil
+    }
+  }
+  
+  
   init(_ value:String){
     self = .StringValue(value)
   }
@@ -34,35 +65,20 @@ public extension JSONValue{
   }
   
   
-  var stringValue:String?{
-    switch self{
-    case .StringValue(let string):
-      return string
-    default:
-      return nil
-    }
+  static func result(string:String)->Result<JSONValue>{
+    return Result(self(string))
   }
   
   
-  var numberValue:NSNumber?{
-    switch self{
-    case .NumberValue(let number):
-      return number
-    default:
-      return nil
-    }
+  static func result(number:NSNumber)->Result<JSONValue>{
+    return Result(self(number))
   }
 
   
-  var collectionValue:JSONCollection?{
-    switch self{
-    case .CollectionValue(let collection):
-      return collection
-    default:
-      return nil
-    }
+  static func result(collection:JSONCollection)->Result<JSONValue>{
+    return Result(self(collection))
   }
-  
+
   
   func toString()->String{
     switch self{

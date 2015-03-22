@@ -8,11 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		730A12A51AAE904200A66FF5 /* JSONValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730A12A41AAE904200A66FF5 /* JSONValueTests.swift */; };
+		733172D41ABF0756009C18B0 /* GroundFloor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733172D31ABF0756009C18B0 /* GroundFloor.framework */; };
 		734380611AAD45EF004A5B7B /* Yanes.h in Headers */ = {isa = PBXBuildFile; fileRef = 734380601AAD45EF004A5B7B /* Yanes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		734380671AAD45EF004A5B7B /* Yanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7343805B1AAD45EF004A5B7B /* Yanes.framework */; };
 		7343806E1AAD45EF004A5B7B /* JSONCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343806D1AAD45EF004A5B7B /* JSONCollectionTests.swift */; };
 		734380781AAD468E004A5B7B /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734380771AAD468E004A5B7B /* Result.framework */; };
-		7343807B1AAD46D3004A5B7B /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343807A1AAD46D3004A5B7B /* JSON.swift */; };
 		734380801AAD46E2004A5B7B /* JSONCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343807C1AAD46E2004A5B7B /* JSONCollection.swift */; };
 		734380811AAD46E2004A5B7B /* JSONSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343807D1AAD46E2004A5B7B /* JSONSubscript.swift */; };
 		734380821AAD46E2004A5B7B /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343807E1AAD46E2004A5B7B /* JSONValue.swift */; };
@@ -33,6 +33,7 @@
 
 /* Begin PBXFileReference section */
 		730A12A41AAE904200A66FF5 /* JSONValueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValueTests.swift; sourceTree = "<group>"; };
+		733172D31ABF0756009C18B0 /* GroundFloor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GroundFloor.framework; path = Carthage/Build/iOS/GroundFloor.framework; sourceTree = "<group>"; };
 		7343805B1AAD45EF004A5B7B /* Yanes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Yanes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7343805F1AAD45EF004A5B7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		734380601AAD45EF004A5B7B /* Yanes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Yanes.h; sourceTree = "<group>"; };
@@ -40,7 +41,6 @@
 		7343806C1AAD45EF004A5B7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7343806D1AAD45EF004A5B7B /* JSONCollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONCollectionTests.swift; sourceTree = "<group>"; };
 		734380771AAD468E004A5B7B /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
-		7343807A1AAD46D3004A5B7B /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		7343807C1AAD46E2004A5B7B /* JSONCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONCollection.swift; sourceTree = "<group>"; };
 		7343807D1AAD46E2004A5B7B /* JSONSubscript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSubscript.swift; sourceTree = "<group>"; };
 		7343807E1AAD46E2004A5B7B /* JSONValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValue.swift; sourceTree = "<group>"; };
@@ -54,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				733172D41ABF0756009C18B0 /* GroundFloor.framework in Frameworks */,
 				734380781AAD468E004A5B7B /* Result.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -72,6 +73,7 @@
 		734380511AAD45EF004A5B7B = {
 			isa = PBXGroup;
 			children = (
+				733172D31ABF0756009C18B0 /* GroundFloor.framework */,
 				737EECCB1AB495BE005377B3 /* Cartfile */,
 				734380771AAD468E004A5B7B /* Result.framework */,
 				7343805D1AAD45EF004A5B7B /* Yanes */,
@@ -93,7 +95,6 @@
 			isa = PBXGroup;
 			children = (
 				734380601AAD45EF004A5B7B /* Yanes.h */,
-				7343807A1AAD46D3004A5B7B /* JSON.swift */,
 				7343807C1AAD46E2004A5B7B /* JSONCollection.swift */,
 				7343807D1AAD46E2004A5B7B /* JSONSubscript.swift */,
 				7343807E1AAD46E2004A5B7B /* JSONValue.swift */,
@@ -242,6 +243,7 @@
 			);
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/GroundFloor.framework",
 			);
 			outputPaths = (
 			);
@@ -257,7 +259,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				737EECCE1AB4A047005377B3 /* NSError+Yanes.swift in Sources */,
-				7343807B1AAD46D3004A5B7B /* JSON.swift in Sources */,
 				734380821AAD46E2004A5B7B /* JSONValue.swift in Sources */,
 				734380801AAD46E2004A5B7B /* JSONCollection.swift in Sources */,
 				734380831AAD46E2004A5B7B /* Types.swift in Sources */,

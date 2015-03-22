@@ -3,6 +3,26 @@ import XCTest
 import Yanes
 
 class JSONCollectionTests: XCTestCase {
+  func testArrayFromArray(){
+    let intArray = JSONCollection(array:[1,2,3])
+    XCTAssert(intArray!.isArray)
+
+    let stringArray = JSONCollection(array:["foo", "bar", "baz"])
+    XCTAssert(stringArray!.isArray)
+
+    let mixedArray = JSONCollection(array:[1, "bar", [1,2,3]])
+    XCTAssert(mixedArray!.isArray)
+    
+    let invalidArray = JSONCollection(array:[NSDate()])
+    XCTAssert(invalidArray == nil)
+  }
+  
+  
+  func testObjectFromDictionary(){
+    let intObject = JSONCollection(dictionary:["foo":1, "bar":2, "baz":3])
+  }
+  
+  
   func testMalformedString(){
     let malformed = JSONCollection(string:"not JSON")
     XCTAssert(malformed == nil)
@@ -67,8 +87,6 @@ class JSONCollectionTests: XCTestCase {
     XCTAssertEqual(innerArray.arrayValue![1].numberValue!, 2)
     XCTAssertEqual(innerArray.arrayValue![2].numberValue!, 3)
   }
-  
-  
 
   
   func testInitErrors(){
@@ -82,4 +100,10 @@ class JSONCollectionTests: XCTestCase {
   }
 
   
+  func testIndexSubscript(){
+  }
+  
+  
+  func testKeySubscript(){
+  }
 }

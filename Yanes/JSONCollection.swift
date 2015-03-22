@@ -1,5 +1,6 @@
 import Foundation
 import Result
+import GroundFloor
 
 public enum JSONCollection{
   case ObjectValue(JSONObject)
@@ -9,21 +10,13 @@ public enum JSONCollection{
 
 
 public extension JSONCollection{
-  
-  init?(string:String){
-    var noOp:NSError?
-    self.init(string:string, error:&noOp)
+  static var emptyArray:JSONCollection{
+    return JSONCollection.ArrayValue(JSONArray())
   }
   
   
-  init?(string:String, inout error outError:NSError?){
-    switch self.dynamicType.jsonCollectionFromString(string){
-    case .Error(let error):
-      outError = error
-      return nil
-    case .Value(let boxed):
-      self = boxed.unbox
-    }
+  static var emptyObject:JSONCollection{
+    return JSONCollection.ObjectValue(JSONObject())
   }
   
   
@@ -55,17 +48,116 @@ public extension JSONCollection{
   var isArray:Bool{
     return arrayValue != nil
   }
+  
+  
+  init?(string:String){
+    var noOp:NSError?
+    self.init(string:string, error:&noOp)
+  }
+  
+  
+  init?(string:String, inout error outError:NSError?){
+    switch self.dynamicType.result(string){
+    case .Error(let error):
+      outError = error
+      return nil
+    case .Value(let boxed):
+      self = boxed.unbox
+    }
+  }
+  
+  
+  init?(array:NSArray){
+    var noOp:NSError?
+    self.init(array:array, error:&noOp)
+  }
+
+  
+  init?(array:NSArray, inout error outError:NSError?){
+    switch self.dynamicType.result(array){
+    case .Error(let error):
+      outError = error
+      return nil
+    case .Value(let boxed):
+      self = boxed.unbox
+    }
+  }
+  
+  
+  init?(dictionary:NSDictionary){
+    var noOp:NSError?
+    self.init(dictionary:dictionary, error:&noOp)
+  }
+  
+  
+  init?(dictionary:NSDictionary, inout error outError:NSError?){
+    switch self.dynamicType.result(dictionary){
+    case .Error(let error):
+      outError = error
+      return nil
+    case .Value(let boxed):
+      self = boxed.unbox
+    }
+  }
+  
+  
+  static func result(rawJSON:String)->Result<JSONCollection>{
+    return parsedResultFromString(rawJSON).flatMap{ self.collectionResultFromParsedJSON($0) }
+  }
+  
+  
+  static func result(array:NSArray)->Result<JSONCollection>{
+    let emptyResult = Result(JSONCollection.emptyArray)
+    return (array as [AnyObject]).reduce(emptyResult){ last, this in
+      return last.flatMap{ arrayCollection in
+        switch this{
+        case let string as String:
+          return arrayCollection.conjoinResult(JSONValue(string))
+        case let number as NSNumber:
+          return arrayCollection.conjoinResult(JSONValue(number))
+        case let array as NSArray:
+          return self.result(array).flatMap{ arrayCollection.conjoinResult(JSONValue($0)) }
+        case let dictionary as NSDictionary:
+          return self.result(dictionary).flatMap{ arrayCollection.conjoinResult(JSONValue($0)) }
+        default:
+          return .Error(NSError.YanesInvalidJSONValueError())
+        }
+      }
+    }
+  }
+  
+  
+  static func result(dictionary:NSDictionary)->Result<JSONCollection>{
+    let emptyResult = Result(JSONCollection.emptyObject)
+    return reduce(dictionary as [NSObject:AnyObject], emptyResult){ last, this in
+      if let key = this.0 as? JSONKey{
+        return last.flatMap{ objectCollection in
+          switch this.1{
+          case let string as String:
+            return objectCollection.conjoinResult(JSONValue(string), forKey:key)
+          case let number as NSNumber:
+            return objectCollection.conjoinResult(JSONValue(number), forKey:key)
+          case let array as NSArray:
+            return self.result(array).flatMap{ objectCollection.conjoinResult(JSONValue($0), forKey:key) }
+          case let dictionary as NSDictionary:
+            return self.result(dictionary).flatMap{ objectCollection.conjoinResult(JSONValue($0), forKey:key) }
+          default:
+            return .Error(NSError.YanesInvalidJSONValueError())
+          }
+        }
+      } else{
+        return .Error(NSError.YanesInvalidJSONKeyError())
+      }
+    }
+  }
 }
 
 
 
 private extension JSONCollection{
-  static func jsonCollectionFromString(rawJSON:String)->Result<JSONCollection>{
-    return jsonObjectFromString(rawJSON).flatMap{ self.jsonCollectionFromJSONObject($0) }
-  }
+  typealias ParsedJSON = AnyObject
   
-  
-  static func jsonObjectFromString(rawJSON:String)->Result<AnyObject>{
+  static func parsedResultFromString(rawJSON:String)->Result<ParsedJSON>{
     let data = rawJSON.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion:true)!
     var error:NSError?
     var object:AnyObject? = NSJSONSerialization.JSONObjectWithData(data, options:nil, error:&error)
@@ -77,80 +169,35 @@ private extension JSONCollection{
   }
   
   
-  static func jsonCollectionFromJSONObject(jsonObject:AnyObject)->Result<JSONCollection>{
+  static func collectionResultFromParsedJSON(jsonObject:ParsedJSON)->Result<JSONCollection>{
     switch jsonObject{
     case let array as NSArray:
-      return jsonCollectionFromArray(array)
+      return result(array)
     case let dictionary as NSDictionary:
-      return jsonCollectionFromDictionary(dictionary)
+      return result(dictionary)
     default:
       return .Error(NSError.YanesInvalidContainerObjectError())
     }
   }
   
   
-  static func jsonCollectionFromArray(array:NSArray)->Result<JSONCollection>{
-    var jsonArray = JSONArray()
-    for element in array{
-      switch element{
-      case let string as String:
-        jsonArray.append(JSONValue(string))
-      case let number as NSNumber:
-        jsonArray.append(JSONValue(number))
-      case let array as NSArray:
-        switch jsonCollectionFromArray(array){
-        case .Error(let error):
-          return .Error(error)
-        case .Value(let boxed):
-          jsonArray.append(JSONValue(boxed.unbox))
-        }
-      case let dictionary as NSDictionary:
-        switch jsonCollectionFromDictionary(dictionary){
-        case .Error(let error):
-          return .Error(error)
-        case .Value(let boxed):
-          jsonArray.append(JSONValue(boxed.unbox))        
-        }
-      default:
-        return .Error(NSError.YanesInvalidJSONValueError())
-      }
+  func conjoinResult(addition:JSONValue)->Result<JSONCollection>{
+    switch self{
+    case .ArrayValue(let array):
+      return Result(JSONCollection.ArrayValue(array + [addition]))
+    default:
+      return .Error(NSError.YanesInvalidContainerObjectError("Append expected collection to have type of ArrayValue"))
     }
-    return Result(.ArrayValue(jsonArray))
   }
-
   
-  static func jsonCollectionFromDictionary(dictionary:NSDictionary)->Result<JSONCollection>{
-    var jsonObject = JSONObject()
-    for (anyKey, anyValue) in dictionary{
-      
-      if let key = anyKey as? String{
-        switch anyValue{
-        case let string as String:
-          jsonObject[key] = JSONValue(string)
-        case let number as NSNumber:
-          jsonObject[key] = JSONValue(number)
-        case let array as NSArray:
-          switch jsonCollectionFromArray(array){
-          case .Error(let error):
-            return .Error(error)
-          case .Value(let boxed):
-            jsonObject[key] = JSONValue(boxed.unbox)
-          }
-        case let dictionary as NSDictionary:
-          switch jsonCollectionFromDictionary(dictionary){
-          case .Error(let error):
-            return .Error(error)
-          case .Value(let boxed):
-            jsonObject[key] = JSONValue(boxed.unbox)
-          }
-        default:
-          return .Error(NSError.YanesInvalidJSONValueError())
-        }
-      } else{
-        return .Error(NSError.YanesInvalidJSONKeyError())
-      }
+  
+  func conjoinResult(addition:JSONValue, forKey key:JSONKey)->Result<JSONCollection>{
+    switch self{
+    case .ObjectValue(let object):
+      return Result(JSONCollection.ObjectValue(object + [key:addition]))
+    default:
+      return .Error(NSError.YanesInvalidContainerObjectError("Append expected collection fo have type of ObjectValue"))
     }
-    return Result(.ObjectValue(jsonObject))
   }
 }
 
