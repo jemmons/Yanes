@@ -62,6 +62,7 @@ public extension JSONCollection{
       outError = error
       return nil
     case .Value(let boxed):
+      outError = nil
       self = boxed.unbox
     }
   }
@@ -79,6 +80,7 @@ public extension JSONCollection{
       outError = error
       return nil
     case .Value(let boxed):
+      outError = nil
       self = boxed.unbox
     }
   }
@@ -96,6 +98,7 @@ public extension JSONCollection{
       outError = error
       return nil
     case .Value(let boxed):
+      outError = nil
       self = boxed.unbox
     }
   }

@@ -20,6 +20,19 @@ class JSONCollectionTests: XCTestCase {
   
   func testObjectFromDictionary(){
     let intObject = JSONCollection(dictionary:["foo":1, "bar":2, "baz":3])
+    XCTAssert(intObject!.isObject)
+
+    let stringObject = JSONCollection(dictionary:["foo":"one", "bar":"two", "baz":"three"])
+    XCTAssert(stringObject!.isObject)
+    
+    let mixedObject = JSONCollection(dictionary:["foo":1, "bar":"two", "baz":[1,2,3]])
+    XCTAssert(mixedObject!.isObject)
+    
+    let invalidKeyObject = JSONCollection(dictionary:[1:"One"])
+    XCTAssert(invalidKeyObject == nil)
+
+    let invalidValueObject = JSONCollection(dictionary:["foo":NSDate()])
+    XCTAssert(invalidKeyObject == nil)
   }
   
   
@@ -94,16 +107,18 @@ class JSONCollectionTests: XCTestCase {
     JSONCollection(string:"not JSON", error:&error)
     XCTAssertEqual(error!.code, NSPropertyListReadCorruptError)
     
-    var noError:NSError?
-    JSONCollection(string:"{\"is\":\"JSON\"}", error:&noError)
-    XCTAssert(noError == nil)
+    JSONCollection(array:[NSDate()], error:&error)
+    XCTAssertEqual(error!.code, NSError.YanesCodes.InvalidJSONValue.rawValue)
+    
+    JSONCollection(dictionary:[1:"bad key"], error:&error)
+    XCTAssertEqual(error!.code, NSError.YanesCodes.InvalidJSONKey.rawValue)
+    
+    JSONCollection(dictionary:["bad value":NSDate()], error:&error)
+    XCTAssertEqual(error!.code, NSError.YanesCodes.InvalidJSONValue.rawValue)
+    
+    JSONCollection(dictionary:["valid":"JSON"], error:&error)
+    XCTAssert(error == nil, "inout errors should be reset to nil if there is no error")
   }
 
   
-  func testIndexSubscript(){
-  }
-  
-  
-  func testKeySubscript(){
-  }
 }
