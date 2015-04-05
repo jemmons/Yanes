@@ -10,6 +10,7 @@ public enum JSONCollection{
 
 
 public extension JSONCollection{
+  //MARK: - PROPERTIES
   static var emptyArray:JSONCollection{
     return JSONCollection.ArrayValue(JSONArray())
   }
@@ -50,6 +51,20 @@ public extension JSONCollection{
   }
   
   
+  //MARK: - SUBSCRIPTS
+  // We shouldn't have to break this into «first» and «rest», but it works around a bug where a single variadic argument won't infer type correctly and thus won't pick up subscript's integer- and string-literal convertable code.
+  subscript(first:JSONSubscript, rest:JSONSubscript...)->JSONValue?{
+    get{
+      let initial = Optional(JSONValue(self))
+      let subscripts = [first]+rest
+      return subscripts.reduce(initial){ last, next in
+        return last?.collectionValue?.valueForSubscript(next)
+      }
+    }
+  }
+
+  
+  //MARK: - INITIALIZERS
   init?(string:String){
     var noOp:NSError?
     self.init(string:string, error:&noOp)
@@ -157,6 +172,7 @@ public extension JSONCollection{
 
 
 
+//MARK: - PRIVATE
 private extension JSONCollection{
   typealias ParsedJSON = AnyObject
   
@@ -202,10 +218,25 @@ private extension JSONCollection{
       return .Error(NSError.YanesInvalidContainerObjectError("Append expected collection fo have type of ObjectValue"))
     }
   }
+  
+  
+  func valueForSubscript(element:JSONSubscript)->JSONValue?{
+    switch element{
+    case .Index(let index) where isArray:
+      let array = arrayValue!
+      return index < count(array) ? array[index] : nil
+    case .Key(let key) where isObject:
+      return objectValue![key]
+    default:
+      fatalError("Subscript sent to unexpected JSONCollection type.")
+    }
+  }
+
 }
 
 
 
+//MARK: - PRINTABLE
 extension JSONCollection : Printable{
   public var description:String{
     switch self{
