@@ -11,8 +11,6 @@
 		734380611AAD45EF004A5B7B /* Yanes.h in Headers */ = {isa = PBXBuildFile; fileRef = 734380601AAD45EF004A5B7B /* Yanes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		734380671AAD45EF004A5B7B /* Yanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7343805B1AAD45EF004A5B7B /* Yanes.framework */; };
 		7343806E1AAD45EF004A5B7B /* JSONParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343806D1AAD45EF004A5B7B /* JSONParseTests.swift */; };
-		734380801AAD46E2004A5B7B /* JSONCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343807C1AAD46E2004A5B7B /* JSONCollection.swift */; };
-		734380811AAD46E2004A5B7B /* JSONSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343807D1AAD46E2004A5B7B /* JSONSubscript.swift */; };
 		734380821AAD46E2004A5B7B /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343807E1AAD46E2004A5B7B /* JSON.swift */; };
 		734380831AAD46E2004A5B7B /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343807F1AAD46E2004A5B7B /* Types.swift */; };
 		73C813B41BA6027C00522429 /* Rebar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73C813B31BA6027C00522429 /* Rebar.framework */; };
@@ -44,8 +42,6 @@
 		734380661AAD45EF004A5B7B /* YanesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YanesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7343806C1AAD45EF004A5B7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7343806D1AAD45EF004A5B7B /* JSONParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParseTests.swift; sourceTree = "<group>"; };
-		7343807C1AAD46E2004A5B7B /* JSONCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONCollection.swift; sourceTree = "<group>"; };
-		7343807D1AAD46E2004A5B7B /* JSONSubscript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSubscript.swift; sourceTree = "<group>"; };
 		7343807E1AAD46E2004A5B7B /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		7343807F1AAD46E2004A5B7B /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		737EECCB1AB495BE005377B3 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
@@ -112,8 +108,6 @@
 				73D304361BA9B00800E0D2D9 /* JSON+Values.swift */,
 				73D304381BA9B09800E0D2D9 /* JSON+Equatable.swift */,
 				73D3043A1BA9B0F100E0D2D9 /* JSON+Convertible.swift */,
-				7343807C1AAD46E2004A5B7B /* JSONCollection.swift */,
-				7343807D1AAD46E2004A5B7B /* JSONSubscript.swift */,
 				7343807F1AAD46E2004A5B7B /* Types.swift */,
 				7343805E1AAD45EF004A5B7B /* Supporting Files */,
 			);
@@ -279,11 +273,9 @@
 				73D304371BA9B00800E0D2D9 /* JSON+Values.swift in Sources */,
 				73D3043B1BA9B0F100E0D2D9 /* JSON+Convertible.swift in Sources */,
 				734380821AAD46E2004A5B7B /* JSON.swift in Sources */,
-				734380801AAD46E2004A5B7B /* JSONCollection.swift in Sources */,
 				73D3043D1BA9B31300E0D2D9 /* JSON+Parse.swift in Sources */,
 				734380831AAD46E2004A5B7B /* Types.swift in Sources */,
 				73D304431BA9C75D00E0D2D9 /* JSON+Collection.swift in Sources */,
-				734380811AAD46E2004A5B7B /* JSONSubscript.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

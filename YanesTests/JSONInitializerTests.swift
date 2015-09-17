@@ -14,12 +14,10 @@ class JSONInitializerTests: XCTestCase {
     XCTAssertEqual(JSON(number:jsonDouble).numberValue!, jsonDouble)
     
     XCTAssertEqual(JSON(number:true), JSON.NumberValue(true))
-    XCTAssertEqual(JSON(number:true).boolValue!, true)
     XCTAssertEqual(JSON(number:true).numberValue!, true)
     XCTAssertEqual(JSON(number:true).numberValue!.boolValue, true)
     
     XCTAssertEqual(JSON(number:false), JSON.NumberValue(false))
-    XCTAssertEqual(JSON(number:false).boolValue!, false)
     XCTAssertEqual(JSON(number:false).numberValue!, false)
     XCTAssertEqual(JSON(number:false).numberValue!.boolValue, false)
   }

@@ -11,6 +11,11 @@ public extension JSON{
     }
     return false
   }
+
+  
+  var isNotNull:Bool{
+    return !isNull
+  }
   
   
   var objectValue:JSONObject?{
@@ -26,6 +31,11 @@ public extension JSON{
       return true
     }
     return false
+  }
+  
+  
+  var isNotObject:Bool{
+    return !isObject
   }
   
   
@@ -45,6 +55,11 @@ public extension JSON{
   }
   
   
+  var isNotArray:Bool{
+    return !isArray
+  }
+  
+  
   var stringValue:String?{
     guard case .StringValue(let string) = self else{
       return nil
@@ -58,6 +73,11 @@ public extension JSON{
       return true
     }
     return false
+  }
+  
+  
+  var isNotString:Bool{
+    return !isString
   }
   
   
@@ -77,12 +97,7 @@ public extension JSON{
   }
   
   
-  var boolValue:Bool?{
-    return numberValue?.boolValue
-  }
-  
-  
-  var isBool:Bool{
-    return isNumber // ಠ_ಠ
+  var isNotNumber:Bool{
+    return !isNumber
   }
 }
