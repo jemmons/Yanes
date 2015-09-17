@@ -8,17 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		730A12A51AAE904200A66FF5 /* JSONValueTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 730A12A41AAE904200A66FF5 /* JSONValueTests.swift */; };
-		733172D41ABF0756009C18B0 /* GroundFloor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 733172D31ABF0756009C18B0 /* GroundFloor.framework */; };
 		734380611AAD45EF004A5B7B /* Yanes.h in Headers */ = {isa = PBXBuildFile; fileRef = 734380601AAD45EF004A5B7B /* Yanes.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		734380671AAD45EF004A5B7B /* Yanes.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7343805B1AAD45EF004A5B7B /* Yanes.framework */; };
-		7343806E1AAD45EF004A5B7B /* JSONCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343806D1AAD45EF004A5B7B /* JSONCollectionTests.swift */; };
-		734380781AAD468E004A5B7B /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 734380771AAD468E004A5B7B /* Result.framework */; };
+		7343806E1AAD45EF004A5B7B /* JSONParseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343806D1AAD45EF004A5B7B /* JSONParseTests.swift */; };
 		734380801AAD46E2004A5B7B /* JSONCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343807C1AAD46E2004A5B7B /* JSONCollection.swift */; };
 		734380811AAD46E2004A5B7B /* JSONSubscript.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343807D1AAD46E2004A5B7B /* JSONSubscript.swift */; };
-		734380821AAD46E2004A5B7B /* JSONValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343807E1AAD46E2004A5B7B /* JSONValue.swift */; };
+		734380821AAD46E2004A5B7B /* JSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343807E1AAD46E2004A5B7B /* JSON.swift */; };
 		734380831AAD46E2004A5B7B /* Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7343807F1AAD46E2004A5B7B /* Types.swift */; };
-		737EECCC1AB495BE005377B3 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = 737EECCB1AB495BE005377B3 /* Cartfile */; };
-		737EECCE1AB4A047005377B3 /* NSError+Yanes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 737EECCD1AB4A047005377B3 /* NSError+Yanes.swift */; };
+		73C813B41BA6027C00522429 /* Rebar.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73C813B31BA6027C00522429 /* Rebar.framework */; };
+		73D304371BA9B00800E0D2D9 /* JSON+Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D304361BA9B00800E0D2D9 /* JSON+Values.swift */; settings = {ASSET_TAGS = (); }; };
+		73D304391BA9B09800E0D2D9 /* JSON+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D304381BA9B09800E0D2D9 /* JSON+Equatable.swift */; settings = {ASSET_TAGS = (); }; };
+		73D3043B1BA9B0F100E0D2D9 /* JSON+Convertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D3043A1BA9B0F100E0D2D9 /* JSON+Convertible.swift */; settings = {ASSET_TAGS = (); }; };
+		73D3043D1BA9B31300E0D2D9 /* JSON+Parse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D3043C1BA9B31300E0D2D9 /* JSON+Parse.swift */; settings = {ASSET_TAGS = (); }; };
+		73D3043F1BA9C40000E0D2D9 /* JSONInitializerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D3043E1BA9C40000E0D2D9 /* JSONInitializerTests.swift */; settings = {ASSET_TAGS = (); }; };
+		73D304411BA9C57100E0D2D9 /* JSONSubscriptTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D304401BA9C57100E0D2D9 /* JSONSubscriptTests.swift */; settings = {ASSET_TAGS = (); }; };
+		73D304431BA9C75D00E0D2D9 /* JSON+Collection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D304421BA9C75D00E0D2D9 /* JSON+Collection.swift */; settings = {ASSET_TAGS = (); }; };
+		73D304451BAA197800E0D2D9 /* JSONCollectionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73D304441BAA197800E0D2D9 /* JSONCollectionTests.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -33,20 +38,27 @@
 
 /* Begin PBXFileReference section */
 		730A12A41AAE904200A66FF5 /* JSONValueTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValueTests.swift; sourceTree = "<group>"; };
-		733172D31ABF0756009C18B0 /* GroundFloor.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GroundFloor.framework; path = Carthage/Build/iOS/GroundFloor.framework; sourceTree = "<group>"; };
 		7343805B1AAD45EF004A5B7B /* Yanes.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Yanes.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7343805F1AAD45EF004A5B7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		734380601AAD45EF004A5B7B /* Yanes.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Yanes.h; sourceTree = "<group>"; };
 		734380661AAD45EF004A5B7B /* YanesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YanesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7343806C1AAD45EF004A5B7B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7343806D1AAD45EF004A5B7B /* JSONCollectionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONCollectionTests.swift; sourceTree = "<group>"; };
-		734380771AAD468E004A5B7B /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
+		7343806D1AAD45EF004A5B7B /* JSONParseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParseTests.swift; sourceTree = "<group>"; };
 		7343807C1AAD46E2004A5B7B /* JSONCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONCollection.swift; sourceTree = "<group>"; };
 		7343807D1AAD46E2004A5B7B /* JSONSubscript.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSubscript.swift; sourceTree = "<group>"; };
-		7343807E1AAD46E2004A5B7B /* JSONValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValue.swift; sourceTree = "<group>"; };
+		7343807E1AAD46E2004A5B7B /* JSON.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSON.swift; sourceTree = "<group>"; };
 		7343807F1AAD46E2004A5B7B /* Types.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Types.swift; sourceTree = "<group>"; };
 		737EECCB1AB495BE005377B3 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
-		737EECCD1AB4A047005377B3 /* NSError+Yanes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSError+Yanes.swift"; sourceTree = "<group>"; };
+		73BCDBD01BA78958007425CB /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		73C813B31BA6027C00522429 /* Rebar.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Rebar.framework; path = Carthage/Build/iOS/Rebar.framework; sourceTree = "<group>"; };
+		73D304361BA9B00800E0D2D9 /* JSON+Values.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Values.swift"; sourceTree = "<group>"; };
+		73D304381BA9B09800E0D2D9 /* JSON+Equatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Equatable.swift"; sourceTree = "<group>"; };
+		73D3043A1BA9B0F100E0D2D9 /* JSON+Convertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Convertible.swift"; sourceTree = "<group>"; };
+		73D3043C1BA9B31300E0D2D9 /* JSON+Parse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Parse.swift"; sourceTree = "<group>"; };
+		73D3043E1BA9C40000E0D2D9 /* JSONInitializerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONInitializerTests.swift; sourceTree = "<group>"; };
+		73D304401BA9C57100E0D2D9 /* JSONSubscriptTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONSubscriptTests.swift; sourceTree = "<group>"; };
+		73D304421BA9C75D00E0D2D9 /* JSON+Collection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Collection.swift"; sourceTree = "<group>"; };
+		73D304441BAA197800E0D2D9 /* JSONCollectionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONCollectionTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,8 +66,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				733172D41ABF0756009C18B0 /* GroundFloor.framework in Frameworks */,
-				734380781AAD468E004A5B7B /* Result.framework in Frameworks */,
+				73C813B41BA6027C00522429 /* Rebar.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,9 +84,9 @@
 		734380511AAD45EF004A5B7B = {
 			isa = PBXGroup;
 			children = (
-				733172D31ABF0756009C18B0 /* GroundFloor.framework */,
+				73C813B31BA6027C00522429 /* Rebar.framework */,
 				737EECCB1AB495BE005377B3 /* Cartfile */,
-				734380771AAD468E004A5B7B /* Result.framework */,
+				73BCDBD01BA78958007425CB /* README.md */,
 				7343805D1AAD45EF004A5B7B /* Yanes */,
 				7343806A1AAD45EF004A5B7B /* YanesTests */,
 				7343805C1AAD45EF004A5B7B /* Products */,
@@ -95,12 +106,16 @@
 			isa = PBXGroup;
 			children = (
 				734380601AAD45EF004A5B7B /* Yanes.h */,
+				7343807E1AAD46E2004A5B7B /* JSON.swift */,
+				73D304421BA9C75D00E0D2D9 /* JSON+Collection.swift */,
+				73D3043C1BA9B31300E0D2D9 /* JSON+Parse.swift */,
+				73D304361BA9B00800E0D2D9 /* JSON+Values.swift */,
+				73D304381BA9B09800E0D2D9 /* JSON+Equatable.swift */,
+				73D3043A1BA9B0F100E0D2D9 /* JSON+Convertible.swift */,
 				7343807C1AAD46E2004A5B7B /* JSONCollection.swift */,
 				7343807D1AAD46E2004A5B7B /* JSONSubscript.swift */,
-				7343807E1AAD46E2004A5B7B /* JSONValue.swift */,
 				7343807F1AAD46E2004A5B7B /* Types.swift */,
 				7343805E1AAD45EF004A5B7B /* Supporting Files */,
-				737EECCD1AB4A047005377B3 /* NSError+Yanes.swift */,
 			);
 			path = Yanes;
 			sourceTree = "<group>";
@@ -116,7 +131,10 @@
 		7343806A1AAD45EF004A5B7B /* YanesTests */ = {
 			isa = PBXGroup;
 			children = (
-				7343806D1AAD45EF004A5B7B /* JSONCollectionTests.swift */,
+				7343806D1AAD45EF004A5B7B /* JSONParseTests.swift */,
+				73D304441BAA197800E0D2D9 /* JSONCollectionTests.swift */,
+				73D304401BA9C57100E0D2D9 /* JSONSubscriptTests.swift */,
+				73D3043E1BA9C40000E0D2D9 /* JSONInitializerTests.swift */,
 				730A12A41AAE904200A66FF5 /* JSONValueTests.swift */,
 				7343806B1AAD45EF004A5B7B /* Supporting Files */,
 			);
@@ -188,7 +206,8 @@
 		734380521AAD45EF004A5B7B /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0630;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = MCMXCIX;
 				TargetAttributes = {
 					7343805A1AAD45EF004A5B7B = {
@@ -222,7 +241,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				737EECCC1AB495BE005377B3 /* Cartfile in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,8 +260,7 @@
 			files = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Result.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/GroundFloor.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/Rebar.framework",
 			);
 			outputPaths = (
 			);
@@ -258,10 +275,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				737EECCE1AB4A047005377B3 /* NSError+Yanes.swift in Sources */,
-				734380821AAD46E2004A5B7B /* JSONValue.swift in Sources */,
+				73D304391BA9B09800E0D2D9 /* JSON+Equatable.swift in Sources */,
+				73D304371BA9B00800E0D2D9 /* JSON+Values.swift in Sources */,
+				73D3043B1BA9B0F100E0D2D9 /* JSON+Convertible.swift in Sources */,
+				734380821AAD46E2004A5B7B /* JSON.swift in Sources */,
 				734380801AAD46E2004A5B7B /* JSONCollection.swift in Sources */,
+				73D3043D1BA9B31300E0D2D9 /* JSON+Parse.swift in Sources */,
 				734380831AAD46E2004A5B7B /* Types.swift in Sources */,
+				73D304431BA9C75D00E0D2D9 /* JSON+Collection.swift in Sources */,
 				734380811AAD46E2004A5B7B /* JSONSubscript.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,8 +291,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7343806E1AAD45EF004A5B7B /* JSONCollectionTests.swift in Sources */,
+				73D3043F1BA9C40000E0D2D9 /* JSONInitializerTests.swift in Sources */,
+				7343806E1AAD45EF004A5B7B /* JSONParseTests.swift in Sources */,
 				730A12A51AAE904200A66FF5 /* JSONValueTests.swift in Sources */,
+				73D304451BAA197800E0D2D9 /* JSONCollectionTests.swift in Sources */,
+				73D304411BA9C57100E0D2D9 /* JSONSubscriptTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,6 +332,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -384,13 +409,14 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = Yanes/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mcmxcix.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -406,13 +432,14 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
+					"$(inherited)",
 				);
 				INFOPLIST_FILE = Yanes/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mcmxcix.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -423,7 +450,6 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
 				GCC_PREPROCESSOR_DEFINITIONS = (
@@ -432,6 +458,7 @@
 				);
 				INFOPLIST_FILE = YanesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mcmxcix.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -441,11 +468,11 @@
 			buildSettings = {
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
-					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = YanesTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.mcmxcix.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

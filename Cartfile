@@ -1,2 +1,1 @@
-github "jemmons/Result" == 0.4
-github "jemmons/GroundFloor" == 0.2
+github "reverbdotcom/rebar" == 0.3
