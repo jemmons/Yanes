@@ -19,6 +19,14 @@ extension JSON : FloatLiteralConvertible{
 
 
 
+extension JSON : BooleanLiteralConvertible{
+  public init(booleanLiteral value:Bool) {
+    self = .NumberValue(NSNumber(bool:value))
+  }
+}
+
+
+
 extension JSON : StringLiteralConvertible{
   public init(stringLiteral value: String){
     self = .StringValue(value)
@@ -33,6 +41,21 @@ extension JSON : StringLiteralConvertible{
   }
 }
 
+
+
+extension JSON : ArrayLiteralConvertible{
+  public init(arrayLiteral elements:JSON...){
+    self = .ArrayValue(elements)
+  }
+}
+
+
+
+extension JSON : DictionaryLiteralConvertible{
+  public init(dictionaryLiteral elements:(JSONKey, JSON)...){
+    self = .ObjectValue(Dictionary(pairs: elements))
+  }
+}
 
 
 extension JSON : CustomDebugStringConvertible{
