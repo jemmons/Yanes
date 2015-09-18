@@ -6,41 +6,40 @@ import Yanes
 class JSONInitializerTests: XCTestCase {
   func testNumberInitializer(){
     let jsonInteger = 42
-    XCTAssertEqual(JSON(number:jsonInteger), JSON.NumberValue(jsonInteger))
-    XCTAssertEqual(JSON(number:jsonInteger).numberValue!, jsonInteger)
+    XCTAssertEqual(JSON(jsonInteger), JSON.NumberValue(jsonInteger))
+    XCTAssertEqual(JSON(jsonInteger).numberValue!, jsonInteger)
     
     let jsonDouble = 42.42
-    XCTAssertEqual(JSON(number:jsonDouble), JSON.NumberValue(jsonDouble))
-    XCTAssertEqual(JSON(number:jsonDouble).numberValue!, jsonDouble)
+    XCTAssertEqual(JSON(jsonDouble), JSON.NumberValue(jsonDouble))
+    XCTAssertEqual(JSON(jsonDouble).numberValue!, jsonDouble)
     
-    XCTAssertEqual(JSON(number:true), JSON.NumberValue(true))
-    XCTAssertEqual(JSON(number:true).numberValue!, true)
-    XCTAssertEqual(JSON(number:true).numberValue!.boolValue, true)
+    let jsonTrue = true //Needed to avoid BoolLiteralConvertible
+    XCTAssertEqual(JSON(jsonTrue), JSON.NumberValue(NSNumber(bool:true)))
+    XCTAssertEqual(JSON(jsonTrue).numberValue!.boolValue, true)
     
-    XCTAssertEqual(JSON(number:false), JSON.NumberValue(false))
-    XCTAssertEqual(JSON(number:false).numberValue!, false)
-    XCTAssertEqual(JSON(number:false).numberValue!.boolValue, false)
+    let jsonFalse = false //Needed to avoid BoolLiteralConvertible
+    XCTAssertEqual(JSON(jsonFalse), JSON.NumberValue(NSNumber(bool:false)))
+    XCTAssertEqual(JSON(jsonFalse).numberValue!.boolValue, false)
   }
   
   
   func testStringInitializer(){
     let jsonString = "foo"
-    XCTAssertEqual(JSON(string:jsonString), JSON.StringValue(jsonString))
-    XCTAssertEqual(JSON(string:jsonString).stringValue!, jsonString)
+    XCTAssertEqual(JSON(jsonString), JSON.StringValue(jsonString))
+    XCTAssertEqual(JSON(jsonString).stringValue!, jsonString)
   }
   
   
   func testArrayInitialier(){
-    let jsonArray = [JSON(number:1), JSON(number:2)]
-    XCTAssertEqual(JSON(array:jsonArray), JSON.ArrayValue(jsonArray))
-    XCTAssertEqual(JSON(array:jsonArray).arrayValue!, jsonArray)
+    let jsonArray = [JSON.NumberValue(1), JSON.NumberValue(2)]
+    XCTAssertEqual(JSON(jsonArray), JSON.ArrayValue(jsonArray))
+    XCTAssertEqual(JSON(jsonArray).arrayValue!, jsonArray)
   }
   
   
   func testObjectInitializer(){
-    let jsonObject = ["foo":JSON(number:42)]
-    XCTAssertEqual(JSON(object:jsonObject), JSON.ObjectValue(jsonObject))
-    XCTAssertEqual(JSON(object:jsonObject).objectValue!, jsonObject)
+    let jsonObject = ["foo":JSON.NumberValue(42)]
+    XCTAssertEqual(JSON(jsonObject), JSON.ObjectValue(jsonObject))
+    XCTAssertEqual(JSON(jsonObject).objectValue!, jsonObject)
   }
-
 }

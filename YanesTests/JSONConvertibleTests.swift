@@ -5,7 +5,7 @@ import Yanes
 
 class JSONConvertibleTests : XCTestCase{
   func testStringLiteralConvertible(){
-    let stringAnswer = JSON(string:"foo")
+    let stringAnswer = JSON.StringValue("foo")
     
     let json:JSON = "foo"
     XCTAssertEqual(json, stringAnswer)
@@ -19,9 +19,9 @@ class JSONConvertibleTests : XCTestCase{
   
 
   func testNumberLiteralConvertible(){
-    let intAnswer = JSON(number: NSNumber(integer: 42))
-    let doubleAnswer = JSON(number: NSNumber(double: 42.42))
-    let boolAnswer = JSON(number: NSNumber(bool: true))
+    let intAnswer = JSON.NumberValue(NSNumber(integer:42))
+    let doubleAnswer = JSON.NumberValue(NSNumber(double: 42.42))
+    let boolAnswer = JSON.NumberValue((NSNumber(bool: true)))
     
     var json:JSON = 42
     XCTAssertEqual(json, intAnswer)
@@ -47,7 +47,7 @@ class JSONConvertibleTests : XCTestCase{
 
   
   func testArrayLiteralConvertible(){
-    let arrayAnswer = JSON(array: [JSON(number:1), JSON(number:2), JSON(number:3)])
+    let arrayAnswer = JSON.ArrayValue([JSON.NumberValue(1), JSON.NumberValue(2), JSON.NumberValue(3)])
     
     let json:JSON = [1,2,3]
     XCTAssertEqual(json, arrayAnswer)
@@ -61,7 +61,7 @@ class JSONConvertibleTests : XCTestCase{
   
   
   func testDictionaryLiteralConvertible(){
-    let objectAnswer = JSON(object: ["one":JSON(number:1), "two":JSON(number:2), "three":JSON(number:3)])
+    let objectAnswer = JSON.ObjectValue(["one":JSON.NumberValue(1), "two":JSON.NumberValue(2), "three":JSON.NumberValue(3)])
     
     let json:JSON = ["one":1, "two":2, "three":3]
     XCTAssertEqual(json, objectAnswer)

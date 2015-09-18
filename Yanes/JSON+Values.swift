@@ -100,4 +100,52 @@ public extension JSON{
   var isNotNumber:Bool{
     return !isNumber
   }
+  
+  
+  func val()->String?{
+    guard case .StringValue(let string) = self else{
+      return nil
+    }
+    return string
+  }
+  
+  
+  func val()->Int?{
+    guard case .NumberValue(let number) = self else{
+      return nil
+    }
+    return number.integerValue
+  }
+  
+  
+  func val()->Double?{
+    guard case .NumberValue(let number) = self else{
+      return nil
+    }
+    return number.doubleValue
+  }
+  
+  
+  func val()->Bool?{
+    guard case .NumberValue(let number) = self else{
+      return nil
+    }
+    return number.boolValue
+  }
+  
+  
+  func val()->JSONArray?{
+    guard case .ArrayValue(let array) = self else{
+      return nil
+    }
+    return array
+  }
+  
+  
+  func val()->JSONObject?{
+    guard case .ObjectValue(let object) = self else{
+      return nil
+    }
+    return object
+  }
 }

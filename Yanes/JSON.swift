@@ -11,22 +11,38 @@ public enum JSON{
 
 
 public extension JSON{
-  init(number:NSNumber){
+  init(_ int:Int){
+    self = JSON.NumberValue(NSNumber(integer: int))
+  }
+  
+  
+  init(_ double:Double){
+    self = JSON.NumberValue(NSNumber(double: double))
+
+  }
+  
+  
+  init(_ bool:Bool){
+    self = JSON.NumberValue(NSNumber(bool: bool))
+  }
+  
+  
+  init(_ number:NSNumber){
     self = JSON.NumberValue(number)
   }
   
   
-  init(string:String){
+  init(_ string:String){
     self = JSON.StringValue(string)
   }
-
-
-  init(array:JSONArray){
+  
+  
+  init(_ array:JSONArray){
     self = JSON.ArrayValue(array)
   }
-
-
-  init(object:JSONObject){
+  
+  
+  init(_ object:JSONObject){
     self = JSON.ObjectValue(object)
   }
   
