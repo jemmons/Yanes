@@ -6,8 +6,8 @@ import Yanes
 class JSONCollectionTests: XCTestCase {
   let jsonArray = try! JSON.parseArray([1,2,3,4,5])
   let jsonObject = try! JSON.parseDictionary(["one":1,"two":2,"three":3,"four":4,"five":5])
-  let jsonString = JSON.StringValue("foo")
-  let jsonNumber = JSON.NumberValue(42)
+  let jsonString = JSON.String("foo")
+  let jsonNumber = JSON.Number(42)
 
   //MARK: - ARRAY
   func testArrayForIn(){
@@ -35,6 +35,12 @@ class JSONCollectionTests: XCTestCase {
   func testArrayFilter(){
     let subject = jsonArray.filter{ $0.numberValue!.integerValue % 2 == 0 }.map{ $0.numberValue! }
     XCTAssertEqual(subject, [2,4])
+  }
+  
+  
+  func testArrayEmpty(){
+    XCTAssertFalse(jsonArray.isEmpty)
+    XCTAssert(JSON.emptyArray.isEmpty)
   }
   
   
@@ -67,6 +73,12 @@ class JSONCollectionTests: XCTestCase {
   }
 
   
+  func testObjectEmpty(){
+    XCTAssertFalse(jsonObject.isEmpty)
+    XCTAssert(JSON.emptyObject.isEmpty)
+  }
+  
+  
   //MARK: - STRING
   func testStringForIn(){
     var memo = ""
@@ -89,6 +101,12 @@ class JSONCollectionTests: XCTestCase {
     XCTAssertEqual(subject, ["foo"])
   }
   
+  
+  func testStringEmpty(){
+    XCTAssertFalse(jsonString.isEmpty)
+    //Even though "" is an empty string, a JSON.StringValue of anything technicall has one element.
+    XCTAssertFalse(JSON.String("").isEmpty)
+  }
   
   //MARK: - NUMBER
   func testNumberForIn(){
@@ -113,24 +131,35 @@ class JSONCollectionTests: XCTestCase {
   }
   
   
+  func testNumberEmpty(){
+    XCTAssertFalse(jsonNumber.isEmpty)
+  }
+  
+  
   //MARK: - NULL
   func testNullForIn(){
-    for _ in JSON.NullValue{
+    for _ in JSON.Null{
       XCTFail()
     }
   }
   
   
   func testNullForEach(){
-    JSON.NullValue.forEach{ _ in XCTFail() }
+    JSON.Null.forEach{ _ in XCTFail() }
   }
   
   
   func testNullMap(){
-    let subject:[Int] = JSON.NullValue.map{ (_)->Int in
+    let subject:[Int] = JSON.Null.map{ (_)->Int in
       XCTFail()
       return 1
     }
     XCTAssertEqual(subject, [Int]())
+  }
+  
+  
+  func testNullEmpty(){
+    //Null has no elements, so is always empty.
+    XCTAssertTrue(JSON.Null.isEmpty)
   }
 }

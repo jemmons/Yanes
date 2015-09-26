@@ -2,8 +2,19 @@ import Foundation
 import XCTest
 import Yanes
 
-class JSONSubscriptTests : XCTestCase{
-  func testArraySubscript(){
+class JSONIndexTests : XCTestCase{
+  func testArrayIndex(){
+    let subject = try! JSON.parseArray([1,2,3])
+    let one = 0
+    let two = 1
+    let three = 2
+    XCTAssertEqual(subject[one].numberValue!, 1)
+    XCTAssertEqual(subject[two].numberValue!, 2)
+    XCTAssertEqual(subject[three].numberValue!, 3)
+  }
+  
+  
+  func testArrayLiteralIndex(){
     let subject = try! JSON.parseArray([1,2,3])
     XCTAssertEqual(subject[0]!.numberValue!, 1)
     XCTAssertEqual(subject[1]!.numberValue!, 2)
@@ -11,7 +22,20 @@ class JSONSubscriptTests : XCTestCase{
   }
   
   
-  func testObjectSubscript(){
+  func testObjectIndex(){
+    let subject = try! JSON.parseDictionary(["one":1, "two":2, "three":3])
+    let one = "one"
+    let two = "two"
+    let three = "three"
+    let foo = "foo"
+    XCTAssertEqual(subject[one]!.numberValue!, 1)
+    XCTAssertEqual(subject[two]!.numberValue!, 2)
+    XCTAssertEqual(subject[three]!.numberValue!, 3)
+    XCTAssert(subject[foo] == nil)
+  }
+  
+  
+  func testObjectLiteralIndex(){
     let subject = try! JSON.parseDictionary(["one":1, "two":2, "three":3])
     XCTAssertEqual(subject["one"]!.numberValue!, 1)
     XCTAssertEqual(subject["two"]!.numberValue!, 2)
@@ -20,19 +44,39 @@ class JSONSubscriptTests : XCTestCase{
   }
 
   
-  func testJSONSubscript(){
+  func testJSONIndex(){
     let jsonObject = try! JSON.parseDictionary(["one":1, "two":2, "three":3])
-    XCTAssertEqual(jsonObject[JSONSubscript.Key("one")]!.numberValue!, 1)
-    XCTAssertEqual(jsonObject[JSONSubscript.Key("two")]!.numberValue!, 2)
-    XCTAssertEqual(jsonObject[JSONSubscript.Key("three")]!.numberValue!, 3)
+    XCTAssertEqual(jsonObject[JSONIndex.Key("one")]!.numberValue!, 1)
+    XCTAssertEqual(jsonObject[JSONIndex.Key("two")]!.numberValue!, 2)
+    XCTAssertEqual(jsonObject[JSONIndex.Key("three")]!.numberValue!, 3)
     
     let jsonArray = try! JSON.parseArray([1,2,3])
-    XCTAssertEqual(jsonArray[JSONSubscript.Index(0)]!.numberValue!, 1)
-    XCTAssertEqual(jsonArray[JSONSubscript.Index(1)]!.numberValue!, 2)
-    XCTAssertEqual(jsonArray[JSONSubscript.Index(2)]!.numberValue!, 3)
+    XCTAssertEqual(jsonArray[JSONIndex.Index(0)]!.numberValue!, 1)
+    XCTAssertEqual(jsonArray[JSONIndex.Index(1)]!.numberValue!, 2)
+    XCTAssertEqual(jsonArray[JSONIndex.Index(2)]!.numberValue!, 3)
   }
   
-  func testSubscriptPath(){
+  
+  func testJSONIndexEquatable(){
+    XCTAssertEqual(JSONIndex.Key("key"), JSONIndex.Key("key"))
+    XCTAssertEqual(JSONIndex.Index(42), JSONIndex.Index(42))
+    XCTAssertNotEqual(JSONIndex.Key("key"), JSONIndex.Index(42))
+    XCTAssertNotEqual(JSONIndex.Index(42),JSONIndex.Key("key"))
+    XCTAssertNotEqual(JSONIndex.Key("foo"), JSONIndex.Key("bar"))
+    XCTAssertNotEqual(JSONIndex.Index(41), JSONIndex.Index(42))
+  }
+  
+  
+  func testJSONIndexConvertible(){
+    let arrayIndex:JSONIndex = 42
+    XCTAssertEqual(arrayIndex, JSONIndex.Index(42))
+
+    let objectIndex:JSONIndex = "key"
+    XCTAssertEqual(objectIndex, JSONIndex.Key("key"))
+  }
+  
+  
+  func testIndexPath(){
     let mix = ["numbers":[1,2,3], "letters":["a":"ay", "b":"bee", "c":["see", "cee"]]]
     let jsonMix = try! JSON.parseDictionary(mix)
     XCTAssertEqual(jsonMix["numbers", 0]!.numberValue!, 1)
@@ -42,7 +86,16 @@ class JSONSubscriptTests : XCTestCase{
     XCTAssert(jsonMix["letters", "a", "nothing"] == nil)
   }
   
-
+  
+  func testJSONIndexPolymorphicInit(){
+    let arrayIndex = JSONIndex(42)
+    XCTAssertEqual(arrayIndex, JSONIndex.Index(42))
+    
+    let objectIndex = JSONIndex("key")
+    XCTAssertEqual(objectIndex, JSONIndex.Key("key"))
+  }
+  
+  
   func testJSONExample(){//from http://json.org/example
     let rawJSON = "{ \"glossary\": { \"title\": \"example glossary\", \"GlossDiv\": { \"title\": \"S\", \"GlossList\": { \"GlossEntry\": { \"ID\": \"SGML\", \"SortAs\": \"SGML\", \"GlossTerm\": \"Standard Generalized Markup Language\", \"Acronym\": \"SGML\", \"Abbrev\": \"ISO 8879:1986\", \"GlossDef\": { \"para\": \"A meta-markup language, used to create markup languages such as DocBook.\", \"GlossSeeAlso\": [\"GML\", \"XML\"] }, \"GlossSee\": \"markup\" } } } } }"
     let subject = try! JSON.parseString(rawJSON)

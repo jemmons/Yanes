@@ -7,7 +7,7 @@ class JSONParseTests: XCTestCase {
   func testParseNumberArray(){
     let intArray = try! JSON.parseArray([1,2,3])
     XCTAssert(intArray.isArray)
-    XCTAssertEqual(intArray.arrayValue!, [JSON.NumberValue(1), JSON.NumberValue(2), JSON.NumberValue(3)])
+    XCTAssertEqual(intArray.arrayValue!, [JSON.Number(1), JSON.Number(2), JSON.Number(3)])
 
   }
   
@@ -15,7 +15,7 @@ class JSONParseTests: XCTestCase {
   func testParseStringArray(){
     let stringArray = try! JSON.parseArray(["foo", "bar", "baz"])
     XCTAssert(stringArray.isArray)
-    XCTAssertEqual(stringArray.arrayValue!, [JSON.StringValue("foo"), JSON.StringValue("bar"), JSON.StringValue("baz")])
+    XCTAssertEqual(stringArray.arrayValue!, [JSON.String("foo"), JSON.String("bar"), JSON.String("baz")])
   }
   
   
@@ -23,9 +23,9 @@ class JSONParseTests: XCTestCase {
     let mixedArray = try! JSON.parseArray([1, "bar", [1,2,3]])
     XCTAssert(mixedArray.isArray)
     let manualArray = [
-      JSON.NumberValue(1),
-      JSON.StringValue("bar"),
-      JSON.ArrayValue([JSON.NumberValue(1), JSON.NumberValue(2), JSON.NumberValue(3)])
+      JSON.Number(1),
+      JSON.String("bar"),
+      JSON.Array([JSON.Number(1), JSON.Number(2), JSON.Number(3)])
     ]
     XCTAssertEqual(mixedArray.arrayValue!, manualArray)
   }
@@ -45,9 +45,9 @@ class JSONParseTests: XCTestCase {
   
   func testParseNumberDictionary(){
     let intAnswer = [
-      "foo":JSON.NumberValue(1),
-      "bar":JSON.NumberValue(2),
-      "baz":JSON.NumberValue(3)
+      "foo":JSON.Number(1),
+      "bar":JSON.Number(2),
+      "baz":JSON.Number(3)
     ]
     let intObject = try! JSON.parseDictionary(["foo":1, "bar":2, "baz":3])
     XCTAssert(intObject.isObject)
@@ -57,9 +57,9 @@ class JSONParseTests: XCTestCase {
   
   func testParseStringDictionary(){
     let stringAnswer = [
-      "foo":JSON.StringValue("one"),
-      "bar":JSON.StringValue("two"),
-      "baz":JSON.StringValue("three")
+      "foo":JSON.String("one"),
+      "bar":JSON.String("two"),
+      "baz":JSON.String("three")
     ]
     let stringObject = try! JSON.parseDictionary(["foo":"one", "bar":"two", "baz":"three"])
     XCTAssert(stringObject.isObject)
@@ -69,9 +69,9 @@ class JSONParseTests: XCTestCase {
   
   func testParseMixedDictionary(){
     let mixedAnswer = [
-      "foo":JSON.NumberValue(1),
-      "bar":JSON.StringValue("two"),
-      "baz":JSON.ArrayValue([JSON.NumberValue(1), JSON.NumberValue(2), JSON.NumberValue(3)])
+      "foo":JSON.Number(1),
+      "bar":JSON.String("two"),
+      "baz":JSON.Array([JSON.Number(1), JSON.Number(2), JSON.Number(3)])
     ]
 
     let mixedObject = try! JSON.parseDictionary(["foo":1, "bar":"two", "baz":[1,2,3]])

@@ -1,12 +1,12 @@
 import Foundation
 
 public extension JSON{
-  static let emptyObject = JSON.ObjectValue(JSONObject())
-  static let emptyArray = JSON.ArrayValue(JSONArray())
+  static let emptyObject = JSON.Object(JSONObject())
+  static let emptyArray = JSON.Array(JSONArray())
   
   
   var isNull:Bool{
-    if case .NullValue = self{
+    if case .Null = self{
       return true
     }
     return false
@@ -19,7 +19,7 @@ public extension JSON{
   
   
   var objectValue:JSONObject?{
-    guard case .ObjectValue(let object) = self else{
+    guard case .Object(let object) = self else{
       return nil
     }
     return object
@@ -27,7 +27,7 @@ public extension JSON{
   
   
   var isObject:Bool{
-    if case .ObjectValue = self{
+    if case .Object = self{
       return true
     }
     return false
@@ -40,7 +40,7 @@ public extension JSON{
   
   
   var arrayValue:JSONArray?{
-    guard case .ArrayValue(let array) = self else{
+    guard case .Array(let array) = self else{
       return nil
     }
     return array
@@ -48,7 +48,7 @@ public extension JSON{
   
   
   var isArray:Bool{
-    if case .ArrayValue = self{
+    if case .Array = self{
       return true
     }
     return false
@@ -60,8 +60,8 @@ public extension JSON{
   }
   
   
-  var stringValue:String?{
-    guard case .StringValue(let string) = self else{
+  var stringValue:Swift.String?{
+    guard case .String(let string) = self else{
       return nil
     }
     return string
@@ -69,7 +69,7 @@ public extension JSON{
   
   
   var isString:Bool{
-    if case .StringValue = self{
+    if case .String = self{
       return true
     }
     return false
@@ -82,7 +82,7 @@ public extension JSON{
   
   
   var numberValue:NSNumber?{
-    guard case .NumberValue(let number) = self else{
+    guard case .Number(let number) = self else{
       return nil
     }
     return number
@@ -90,7 +90,7 @@ public extension JSON{
   
   
   var isNumber:Bool{
-    if case .NumberValue = self{
+    if case .Number = self{
       return true
     }
     return false
@@ -102,8 +102,8 @@ public extension JSON{
   }
   
   
-  func val()->String?{
-    guard case .StringValue(let string) = self else{
+  func val()->Swift.String?{
+    guard case .String(let string) = self else{
       return nil
     }
     return string
@@ -111,7 +111,7 @@ public extension JSON{
   
   
   func val()->Int?{
-    guard case .NumberValue(let number) = self else{
+    guard case .Number(let number) = self else{
       return nil
     }
     return number.integerValue
@@ -119,7 +119,7 @@ public extension JSON{
   
   
   func val()->Double?{
-    guard case .NumberValue(let number) = self else{
+    guard case .Number(let number) = self else{
       return nil
     }
     return number.doubleValue
@@ -127,7 +127,7 @@ public extension JSON{
   
   
   func val()->Bool?{
-    guard case .NumberValue(let number) = self else{
+    guard case .Number(let number) = self else{
       return nil
     }
     return number.boolValue
@@ -135,7 +135,7 @@ public extension JSON{
   
   
   func val()->JSONArray?{
-    guard case .ArrayValue(let array) = self else{
+    guard case .Array(let array) = self else{
       return nil
     }
     return array
@@ -143,7 +143,7 @@ public extension JSON{
   
   
   func val()->JSONObject?{
-    guard case .ObjectValue(let object) = self else{
+    guard case .Object(let object) = self else{
       return nil
     }
     return object

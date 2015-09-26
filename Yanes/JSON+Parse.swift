@@ -3,7 +3,7 @@ import Rebar
 
 
 public extension JSON{
-  static func parseString(string:String) throws -> JSON{
+  static func parseString(string:Swift.String) throws -> JSON{
     return try parseUntypedJSON(parseString(string))
   }
   
@@ -24,7 +24,7 @@ private extension JSON{
   typealias UntypedArray = NSArray
   
   
-  static func parseString(rawJSON:String) throws -> UntypedJSON{
+  static func parseString(rawJSON:Swift.String) throws -> UntypedJSON{
     //Can never be nil if allowLossy is true.
     let data = rawJSON.dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion:true)!
     return try NSJSONSerialization.JSONObjectWithData(data, options:[]) as UntypedJSON
@@ -46,22 +46,22 @@ private extension JSON{
   static func parseUntypedArray(untypedArray:UntypedArray) throws -> JSON{
     let jsonArray = try (untypedArray as [AnyObject]).map{ it throws -> JSON in
       switch it{
-      case let string as String:
-        return JSON.StringValue(string)
+      case let string as Swift.String:
+        return JSON.String(string)
       case let number as NSNumber:
-        return JSON.NumberValue(number)
+        return JSON.Number(number)
       case let array as UntypedArray:
         return try parseUntypedArray(array)
       case let dictionary as UntypedDictionary:
         return try parseUntypedDictionary(dictionary)
       case is NSNull:
-        return JSON.NullValue
+        return JSON.Null
       default:
         throw ParseError.InvalidValue
       }
     }
     
-    return JSON.ArrayValue(jsonArray)
+    return JSON.Array(jsonArray)
   }
   
   
@@ -71,21 +71,21 @@ private extension JSON{
         throw ParseError.InvalidKey
       }
       switch value{
-      case let string as String:
-        return (key, JSON.StringValue(string))
+      case let string as Swift.String:
+        return (key, JSON.String(string))
       case let number as NSNumber:
-        return (key, JSON.NumberValue(number))
+        return (key, JSON.Number(number))
       case let array as UntypedArray:
         return (key, try parseUntypedArray(array))
       case let dictionary as UntypedDictionary:
         return (key, try parseUntypedDictionary(dictionary))
       case is NSNull:
-        return (key, JSON.NullValue)
+        return (key, JSON.Null)
       default:
         throw ParseError.InvalidValue
       }
     }
     
-    return JSON.ObjectValue(jsonObject)
+    return JSON.Object(jsonObject)
   }
 }

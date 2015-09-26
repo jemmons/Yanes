@@ -9,32 +9,41 @@ extension JSON : CollectionType{
   
   public var endIndex:Int{
     switch self{
-    case .ArrayValue(let array):
+    case .Array(let array):
       return array.endIndex
-    case .ObjectValue(let object):
+    case .Object(let object):
       return object.count
-    case .StringValue:
+    case .String:
       return 1
-    case .NumberValue:
+    case .Number:
       return 1
-    case .NullValue:
+    case .Null:
       return 0
     }
   }
 
   public subscript(index:Int) -> JSON{
-    switch self{
-    case .ArrayValue(let array):
-      return array[index]
-    case .ObjectValue(let object):
-      let objectIndex = object.nthIndex(index)
-      return object[objectIndex].1
-    case .StringValue:
-      return self
-    case .NumberValue:
-      return self
-    case .NullValue:
-      fatalError("Null JSON value should never be iterated over.")
+    get{
+      switch self{
+      case .Array(let array):
+        return array[index]
+      case .Object(let object):
+        let objectIndex = object.nthIndex(index)
+        return object[objectIndex].1
+      case .String:
+        return self
+      case .Number:
+        return self
+      case .Null:
+        fatalError("Null JSON value should never be iterated over.")
+      }
+    }
+    set{
+      guard case .Array(var array) = self else{
+        fatalError("Attempted to set non-array value by index. This would be non-deterministic at best.")
+      }
+      array[index] = newValue
+      self = JSON.Array(array)
     }
   }
 }

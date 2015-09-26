@@ -5,7 +5,7 @@ import Foundation
 
 extension JSON : IntegerLiteralConvertible{
   public init(integerLiteral value: IntegerLiteralType) {
-    self = .NumberValue(value)
+    self = .Number(value)
   }
 }
 
@@ -13,7 +13,7 @@ extension JSON : IntegerLiteralConvertible{
 
 extension JSON : FloatLiteralConvertible{
   public init(floatLiteral value: FloatLiteralType) {
-    self = .NumberValue(value)
+    self = .Number(value)
   }
 }
 
@@ -21,23 +21,23 @@ extension JSON : FloatLiteralConvertible{
 
 extension JSON : BooleanLiteralConvertible{
   public init(booleanLiteral value:Bool) {
-    self = .NumberValue(NSNumber(bool:value))
+    self = .Number(NSNumber(bool:value))
   }
 }
 
 
 
 extension JSON : StringLiteralConvertible{
-  public init(stringLiteral value: String){
-    self = .StringValue(value)
+  public init(stringLiteral value: Swift.String){
+    self = .String(value)
   }
   
-  public init(extendedGraphemeClusterLiteral value: String){
-    self = .StringValue(value)
+  public init(extendedGraphemeClusterLiteral value: Swift.String){
+    self = .String(value)
   }
   
-  public init(unicodeScalarLiteral value: String){
-    self = .StringValue(value)
+  public init(unicodeScalarLiteral value: Swift.String){
+    self = .String(value)
   }
 }
 
@@ -45,7 +45,7 @@ extension JSON : StringLiteralConvertible{
 
 extension JSON : ArrayLiteralConvertible{
   public init(arrayLiteral elements:JSON...){
-    self = .ArrayValue(elements)
+    self = .Array(elements)
   }
 }
 
@@ -53,23 +53,23 @@ extension JSON : ArrayLiteralConvertible{
 
 extension JSON : DictionaryLiteralConvertible{
   public init(dictionaryLiteral elements:(JSONKey, JSON)...){
-    self = .ObjectValue(Dictionary(pairs: elements))
+    self = .Object(Dictionary(pairs: elements))
   }
 }
 
 
 extension JSON : CustomDebugStringConvertible{
-  public var debugDescription:String{
+  public var debugDescription:Swift.String{
     switch self{
-    case .StringValue(let string):
+    case .String(let string):
       return string.debugDescription
-    case .NumberValue(let number):
+    case .Number(let number):
       return number.debugDescription
-    case .ArrayValue(let array):
+    case .Array(let array):
       return array.debugDescription
-    case .ObjectValue(let dictionary):
+    case .Object(let dictionary):
       return dictionary.debugDescription
-    case .NullValue:
+    case .Null:
       return "<null>"
     }
   }

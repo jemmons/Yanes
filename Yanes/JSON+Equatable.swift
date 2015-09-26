@@ -6,15 +6,15 @@ extension JSON : Equatable{}
 
 public func ==(lhs: JSON, rhs: JSON) -> Bool{
   switch (lhs, rhs){
-  case (.StringValue(let a), .StringValue(let b)):
+  case (.String(let a), .String(let b)):
     return a == b
-  case (.NumberValue(let a), .NumberValue(let b)):
+  case (.Number(let a), .Number(let b)):
     return a == b
-  case (.ArrayValue(let a), .ArrayValue(let b)):
+  case (.Array(let a), .Array(let b)):
     return a == b
-  case (.ObjectValue(let a), .ObjectValue(let b)):
+  case (.Object(let a), .Object(let b)):
     return a == b
-  case (.NullValue, .NullValue):
+  case (.Null, .Null):
     return true
   default:
     return false

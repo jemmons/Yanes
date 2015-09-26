@@ -4,7 +4,7 @@ import Yanes
 
 class JSONTests: XCTestCase {
   func testStringValue(){
-    let string = JSON.StringValue("String")
+    let string = JSON.String("String")
     XCTAssertEqual(string.stringValue!, "String")
     XCTAssert(string.isString)
     XCTAssertFalse(string.isArray)
@@ -15,7 +15,7 @@ class JSONTests: XCTestCase {
 
 
   func testNumberValue(){
-    let integer = JSON.NumberValue(42)
+    let integer = JSON.Number(42)
     XCTAssertEqual(integer.numberValue!, 42)
     XCTAssertEqual(integer.numberValue!, 42.0)
     XCTAssert(integer.isNumber)
@@ -27,8 +27,8 @@ class JSONTests: XCTestCase {
 
   
   func testArrayValue(){
-    let jsonArray = [JSON.NumberValue(1), JSON.NumberValue(2), JSON.NumberValue(3)]
-    let array = JSON.ArrayValue(jsonArray)
+    let jsonArray = [JSON.Number(1), JSON.Number(2), JSON.Number(3)]
+    let array = JSON.Array(jsonArray)
     XCTAssertEqual(array.arrayValue!, jsonArray)
     XCTAssert(array.isArray)
     XCTAssertFalse(array.isNumber)
@@ -39,8 +39,8 @@ class JSONTests: XCTestCase {
 
   
   func testObjectValue(){
-    let jsonObject = ["one":JSON.NumberValue(1)]
-    let object = JSON.ObjectValue(jsonObject)
+    let jsonObject = ["one":JSON.Number(1)]
+    let object = JSON.Object(jsonObject)
     XCTAssertEqual(object.objectValue!, jsonObject)
     XCTAssert(object.isObject)
     XCTAssertFalse(object.isNumber)
@@ -51,7 +51,7 @@ class JSONTests: XCTestCase {
 
   
   func testNullValue(){
-    let subject = JSON.NullValue
+    let subject = JSON.Null
     XCTAssert(subject.isNull)
     XCTAssertFalse(subject.isNumber)
     XCTAssertFalse(subject.isArray)
@@ -67,21 +67,21 @@ class JSONTests: XCTestCase {
   
   
   func testStringValuePolymorphism(){
-    let subject = JSON.StringValue("foo")
+    let subject = JSON.String("foo")
     let string:String? = subject.val()
     XCTAssertEqual(string, "foo")
   }
 
 
   func testNegativeStringValuePolymorphism(){
-    let subject = JSON.NumberValue(42)
+    let subject = JSON.Number(42)
     let string:String? = subject.val()
     XCTAssert(string == nil)
   }
   
   
   func testNumberValuePolymorphism(){
-    let subject = JSON.NumberValue(42.42)
+    let subject = JSON.Number(42.42)
     let int:Int? = subject.val()
     let double:Double? = subject.val()
     let bool:Bool? = subject.val()
@@ -92,7 +92,7 @@ class JSONTests: XCTestCase {
 
   
   func testNegativeNumberValuePolymorphism(){
-    let subject = JSON.StringValue("foo")
+    let subject = JSON.String("foo")
     let int:Int? = subject.val()
     let double:Double? = subject.val()
     let bool:Bool? = subject.val()
@@ -105,12 +105,12 @@ class JSONTests: XCTestCase {
   func testArrayValuePolymorphism(){
     let subject = try! JSON.parseArray([1,2,3])
     let array:JSONArray? = subject.val()
-    XCTAssertEqual(array!, [JSON.NumberValue(1), JSON.NumberValue(2), JSON.NumberValue(3)])
+    XCTAssertEqual(array!, [JSON.Number(1), JSON.Number(2), JSON.Number(3)])
   }
   
   
   func testNegativeArrayValuePolymorphism(){
-    let subject = JSON.NumberValue(42)
+    let subject = JSON.Number(42)
     let array:JSONArray? = subject.val()
     XCTAssert(array == nil)
   }
@@ -119,12 +119,12 @@ class JSONTests: XCTestCase {
   func testObjectValuePolymorphism(){
     let subject = try! JSON.parseDictionary(["one":1, "two":2])
     let object:JSONObject? = subject.val()
-    XCTAssertEqual(object!, ["one":JSON.NumberValue(1), "two":JSON.NumberValue(2)])
+    XCTAssertEqual(object!, ["one":JSON.Number(1), "two":JSON.Number(2)])
   }
   
   
   func testNegativeObjectValuePolymorphism(){
-    let subject = JSON.NumberValue(42)
+    let subject = JSON.Number(42)
     let object:JSONObject? = subject.val()
     XCTAssert(object == nil)
   }
